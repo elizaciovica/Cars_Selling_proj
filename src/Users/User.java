@@ -1,4 +1,6 @@
-class User
+package Users;
+
+public class User
 {
     public String username, password, phone_number, email;
 
@@ -51,6 +53,5 @@ class User
     public void setEmail(String email) {
         this.email = email;
     }
-
 
 }
