@@ -1,8 +1,8 @@
-package src.Users;
+package Users;
 
-class User
+public class User
 {
-    protected String username, password, phone_number, email;
+    public String username, password, phone_number, email;
 
     public User(String username,String password,String phone_number,String email)
     {
@@ -53,6 +53,5 @@ class User
     public void setEmail(String email) {
         this.email = email;
     }
-
 
 }
