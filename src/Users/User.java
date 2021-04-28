@@ -1,6 +1,8 @@
+package src.Users;
+
 class User
 {
-    public String username, password, phone_number, email;
+    protected String username, password, phone_number, email;
 
     public User(String username,String password,String phone_number,String email)
     {
