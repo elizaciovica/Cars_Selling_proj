@@ -15,8 +15,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class Database {
-    private static JSONObject data=new JSONObject();
-    private static final String path ="Users.json";
+    private static JSONObject data = new JSONObject();
+    private static JSONArray users = new JSONArray();
+    private static final String path = "Users.json";
 
     public static void setUp() throws IOException, ParseException {
         FileReader reader = null;
@@ -26,7 +27,8 @@ public class Database {
             ex.printStackTrace();
         }
 
-        /*JSONParser js = new JSONParser();
+
+        JSONParser js = new JSONParser();
         Object obj = null;
         try {
             obj = js.parse(reader);
@@ -35,32 +37,23 @@ public class Database {
             e.printStackTrace();
         } catch (ParseException e) {
             e.printStackTrace();
-        }*/
-        Object obj = new JSONParser().parse(reader);
-
-        // typecasting obj to JSONObject
-        JSONObject jo = (JSONObject) obj;
-
-        // getting firstName and lastName
-        String phone = (String) jo.get("phone");
-        String username = (String) jo.get("username");
-
-        System.out.println(phone);
-        System.out.println(username);
+        }
 
     }
+
 
     public static boolean insertUser(User user) {
         JSONObject userData = new JSONObject();
         userData.put("password", user.getPassword());
         userData.put("phone", user.getPhone_number());
         userData.put("email", user.getEmail());
-        userData.put("username",user.getUsername());
+        userData.put("username", user.getUsername());
 
-        try (FileWriter file = new FileWriter("users.json",true)) {
+        try (FileWriter file = new FileWriter("users.json", true)) {
             ObjectMapper mapper = new ObjectMapper();
-            file.write(String.valueOf(userData));
-            file.flush();
+            users.add(userData);
+            //file.write(String.valueOf(users));
+            //file.flush();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -72,8 +65,14 @@ public class Database {
 
     }
 
-    public static void main(String[] args) throws IOException, ParseException {
-       Database.insertUser(new User("ion","sulea","07","hatz@jonule.com"));
-        Database.setUp();
+    public static void writeUsersArray() throws IOException {
+        try (FileWriter file = new FileWriter("users.json", true)) {
+            file.write(String.valueOf(users));
+            file.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
+
