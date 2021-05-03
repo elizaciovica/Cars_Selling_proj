@@ -70,7 +70,7 @@ public class Registration extends Application {
         Stage stage = new Stage();
         stage.setTitle("Registration");
         stage.setWidth(800);
-        stage.setHeight(700);
+        stage.setHeight(800);
         stage.setScene(scene);
         stage.show();
 
