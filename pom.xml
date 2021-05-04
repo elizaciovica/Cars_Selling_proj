@@ -7,7 +7,9 @@
     <groupId>cars_selling.example</groupId>
     <artifactId>Cars_Selling_proj</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
     <build>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -60,11 +62,7 @@
     <artifactId>commons-io</artifactId>
     <version>1.3.2</version>
 </dependency>
-<dependency>
-    <groupId>org.projectlombok</groupId>
-    <artifactId>lombok</artifactId>
-    <version>1.18.12</version>
-</dependency>
+
     <!-- https://mvnrepository.com/artifact/org.json/json -->
     <dependency>
         <groupId>org.json</groupId>

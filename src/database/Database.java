@@ -1,6 +1,6 @@
 package database;
 
-import Users.User;
+import Users.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONObject;
 import org.json.simple.JSONArray;

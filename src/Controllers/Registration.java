@@ -1,5 +1,6 @@
 package Controllers;
-import database.Cryptography;
+import database.*;
+import Users.*;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +12,8 @@ import javafx.scene.control.TextField;
 import Exceptions.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class Registration extends Application {
     @FXML
@@ -49,6 +52,12 @@ public class Registration extends Application {
         String description = descriptionField.getText();
 
         String password = Cryptography.getMD5(passwordField.getText());
+        Database.insertUser(new User(username,mail,phonenumber,password));//, location, description));
+        try {
+            Database.writeUsersArray();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -75,6 +84,6 @@ public class Registration extends Application {
         stage.show();
 
     }
-}
+ }
 
 

@@ -2,14 +2,16 @@ package Users;
 
 public class User
 {
-    public String username, password, phone_number, email;
+    public String username, password, phone_number, email, location, description, role;
 
-    public User(String username,String password,String phone_number,String email)
+    public User(String username,String password,String phone_number,String email)//,String loccation, String description)
     {
         this.username=username;
         this.password=password;
         this.phone_number=phone_number;
         this.email=email;
+        //this.location = loccation;
+        //this.description = description;
     }
 
     @java.lang.Override
