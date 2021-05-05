@@ -3,42 +3,33 @@ package database;
 import Users.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONObject;
+import org.json.JSONWriter;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Iterator;
 
 public class Database {
     private static JSONObject data = new JSONObject();
     private static JSONArray users = new JSONArray();
     private static final String path = "Users.json";
 
+
     public static void setUp() throws IOException, ParseException {
-        FileReader reader = null;
-        try {
-            reader = new FileReader(path);
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
+
+        JSONParser parser = new JSONParser();
+
+        try (Reader reader = new FileReader("users.json")) {
+
+            JSONArray array = (JSONArray) parser.parse(reader);
+            System.out.println(array);
+
+
         }
-
-
-        JSONParser js = new JSONParser();
-        Object obj = null;
-        try {
-            obj = js.parse(reader);
-            data = (JSONObject) obj;
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
     }
 
 
@@ -48,16 +39,8 @@ public class Database {
         userData.put("phone", user.getPhone_number());
         userData.put("email", user.getEmail());
         userData.put("username", user.getUsername());
+        users.add(userData);
 
-        try (FileWriter file = new FileWriter("users.json", true)) {
-            ObjectMapper mapper = new ObjectMapper();
-            users.add(userData);
-            //file.write(String.valueOf(users));
-            //file.flush();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         //((JSONObject) data.get("user")).put(username, userData);
         return true;
@@ -66,8 +49,8 @@ public class Database {
     }
 
     public static void writeUsersArray() throws IOException {
-        try (FileWriter file = new FileWriter("users.json", true)) {
-            file.write(String.valueOf(users));
+        try (FileWriter file = new FileWriter("users.json")) {
+            file.write(users.toJSONString());
             file.flush();
 
         } catch (IOException e) {
