@@ -41,8 +41,6 @@ public class Database {
         userData.put("username", user.getUsername());
         users.add(userData);
 
-
-        //((JSONObject) data.get("user")).put(username, userData);
         return true;
 
 
