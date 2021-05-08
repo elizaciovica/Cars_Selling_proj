@@ -1,5 +1,7 @@
 package Controllers;
+import Users.User;
 import database.Cryptography;
+import database.Database;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +13,8 @@ import javafx.scene.control.TextField;
 import Exceptions.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class Registration extends Application {
     @FXML
@@ -39,18 +43,21 @@ public class Registration extends Application {
         role.getItems().addAll("Customer", "Manager");
     }
 
-    public void handleRegisterAction() {
+    public void handleRegisterAction() throws IOException {
         String username = usernameField.getText();
         String mail = mailField.getText();
-        String address = addressField.getText();
-        String role = accountField.getText();
+        //String address = addressField.getText();
+        //String role = accountField.getText();
         String phonenumber = phoneField.getText();
-        String location = locationField.getText();
-        String description = descriptionField.getText();
+        //String location = locationField.getText();
+        //String description = descriptionField.getText();
 
         String password = Cryptography.getMD5(passwordField.getText());
-
+        Database.insertUser(new User(username,mail,phonenumber,password));
+        Database.writeUsersArray();
     }
+
+
 
 
     public static void main(String[] args) {
@@ -73,6 +80,7 @@ public class Registration extends Application {
         stage.setHeight(800);
         stage.setScene(scene);
         stage.show();
+
 
     }
 }
