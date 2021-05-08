@@ -1,17 +1,17 @@
 package Users;
 
+import java.util.Objects;
+
 public class User
 {
-    public String username, password, phone_number, email, location, description, role;
+    private String username, password, phone_number, email;
 
-    public User(String username,String password,String phone_number,String email)//,String loccation, String description)
+    public User(String username,String password,String phone_number,String email)
     {
         this.username=username;
         this.password=password;
         this.phone_number=phone_number;
         this.email=email;
-        //this.location = loccation;
-        //this.description = description;
     }
 
     @java.lang.Override
@@ -40,6 +40,19 @@ public class User
         this.password = password;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(username, user.username) && Objects.equals(password, user.password) && Objects.equals(phone_number, user.phone_number) && Objects.equals(email, user.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(username, password, phone_number, email);
+    }
+
     public String getPhone_number() {
         return phone_number;
     }
@@ -55,5 +68,7 @@ public class User
     public void setEmail(String email) {
         this.email = email;
     }
+
+
 
 }
