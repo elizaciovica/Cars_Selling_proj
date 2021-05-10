@@ -2,9 +2,13 @@ package Users;
 
 import java.util.Objects;
 
+import Exceptions.IncorrectPasswordException;
+import Exceptions.UserNotFoundException;
+import database.Database;
+
 public class User
 {
-    private String username, password, phone_number, email;
+    private static String username, password, phone_number, email;
 
     public User(String username,String password,String phone_number,String email)
     {
@@ -68,6 +72,22 @@ public class User
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public static User getUser(String name, String password) throws UserNotFoundException, IncorrectPasswordException {
+        if(!Database.userExists(name)) {
+            throw new UserNotFoundException("User" + name + "is not found");
+        }
+        if (!password.equals(Database.getUserPassword(name))) {
+            throw new IncorrectPasswordException("Password incorrect");
+        }
+        if (Database.getUserMode(name).equals("client"))
+            return new Customer(name, password, phone_number, email);
+        else
+            return new Manager(name, password, phone_number, email);
+    }
+
+
+
 
 
 

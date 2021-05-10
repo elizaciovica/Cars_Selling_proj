@@ -1,9 +1,9 @@
 package Users;
-class Manager extends User
+public class Manager extends User
 {
     String business_name, description, location, contact;
 
-    public Manager(String username, String password, String phone_number, String email, String business_name, String description, String location, String contact) {
+    public Manager(String username, String password, String phone_number, String email){
         super(username, password, phone_number, email);
         this.contact=contact;
         this.description=description;
