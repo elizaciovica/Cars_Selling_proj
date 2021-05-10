@@ -14,7 +14,8 @@ import java.nio.file.Paths;
 import java.util.Iterator;
 
 public class Database {
-    private static JSONObject data = new JSONObject();
+
+    private static JSONObject data;
     private static JSONArray users = new JSONArray();
     private static final String path = "Users.json";
 
@@ -55,5 +56,31 @@ public class Database {
             e.printStackTrace();
         }
     }
+
+    private static JSONObject getUserData(String user) {
+        JSONObject userEntry = (JSONObject) ((JSONObject) data.get("users")).get(user);
+        if (userEntry == null)
+            return null;
+        return userEntry;
+    }
+    public static Boolean userExists(String user) {
+        if(getUserData(user) == null)
+            return false;
+        return true;
+    }
+
+    public static String getUserPassword(String user) {
+        JSONObject userData = getUserData(user);
+        if (userData == null)
+            return null;
+        return (String) userData.get("password");
+    }
+    public static String getUserMode(String user) {
+        JSONObject userData = getUserData(user);
+        if (userData == null)
+            return null;
+        return (String) userData.get("mode");
+    }
+
 }
 
