@@ -37,6 +37,8 @@ public class Registration extends Application {
     public TextField descriptionField;
     @FXML
     private ChoiceBox role;
+    @FXML
+    public Text submitMessage;
 
     @FXML
     public void initialize() {
@@ -46,13 +48,18 @@ public class Registration extends Application {
     public void handleRegisterAction() throws IOException {
         String username = usernameField.getText();
         String mail = mailField.getText();
-        //String address = addressField.getText();
-        //String role = accountField.getText();
+        String address = addressField.getText();
+        String role = accountField.getText();
         String phonenumber = phoneField.getText();
+        String password = Cryptography.getMD5(passwordField.getText());
         //String location = locationField.getText();
         //String description = descriptionField.getText();
+        if(mail.isEmpty() || role.isEmpty() || address.isEmpty() || password.isEmpty()) {
+            submitMessage.setText("Please fill all the informations");
+            return;
+        }
 
-        String password = Cryptography.getMD5(passwordField.getText());
+
         Database.insertUser(new User(username,password,phonenumber,mail));
         Database.writeUsersArray();
 

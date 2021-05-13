@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
@@ -36,6 +37,7 @@ public class Login extends Application {
     private Button cancelButton;
     @FXML
     private Button loginButton;
+    private Label loginMessageLabel;
 
     public void setCancelButton(ActionEvent event) {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
@@ -68,6 +70,7 @@ public class Login extends Application {
     }*/
 
     public void handleLoginAction() {
+       // loginMessageLabel.setText("Login trying");
         String username = usernameField.getText();
         String password = Cryptography.getMD5(passwordField.getText());
 
@@ -90,9 +93,11 @@ public class Login extends Application {
                         stage.setHeight(800);
                         stage.setScene(scene);
                         stage.show();
+                        stage.close();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+
                 }
                 if(user instanceof Manager){
                     try {
@@ -105,6 +110,7 @@ public class Login extends Application {
                         stage.setHeight(800);
                         stage.setScene(scene);
                         stage.show();
+                        stage.close();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

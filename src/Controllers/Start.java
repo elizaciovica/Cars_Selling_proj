@@ -35,8 +35,8 @@ public class Start extends Application {
         // set up the stage
         Stage stage = new Stage();
         stage.setTitle("Cars selling");
-        stage.setWidth(800);
-        stage.setHeight(800);
+        stage.setWidth(600);
+        stage.setHeight(600);
         stage.setScene(scene);
         stage.show();
 
@@ -49,7 +49,7 @@ public class Start extends Application {
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.UTILITY);
+            stage.initStyle(StageStyle.DECORATED);
             stage.setTitle("Register");
             stage.setScene(new Scene(root1));
             stage.show();
@@ -64,7 +64,7 @@ public class Start extends Application {
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.UTILITY);
+            stage.initStyle(StageStyle.DECORATED);
             stage.setTitle("Login");
             stage.setScene(new Scene(root1));
             stage.show();
