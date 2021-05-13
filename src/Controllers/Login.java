@@ -17,6 +17,9 @@ import javafx.scene.Parent;
 
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import Exceptions.*;
 
 public class Login extends Application {
@@ -39,9 +42,30 @@ public class Login extends Application {
         stage.close();
     }
 
-    public void initialize() {
-        role.getItems().addAll("Customer", "Manager");
+    public void handleButtonClick() {
+
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(Login.class.getResource("../FXML/Customer.fxml"));
+            /*
+             * if "fx:controller" is not set in fxml
+             * fxmlLoader.setController(NewWindowController);
+             */
+            Scene scene = new Scene(fxmlLoader.load(), 630, 400);
+            Stage stage = new Stage();
+            stage.setTitle("Customer view");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            Logger logger = Logger.getLogger(Login.class.getName());
+            logger.log(Level.SEVERE, "Failed to create new Window.", e);
+        }
+
     }
+
+    /*public void initialize() {
+        role.getItems().addAll("Customer", "Manager");
+    }*/
 
     public void handleLoginAction() {
         String username = usernameField.getText();
@@ -90,6 +114,9 @@ public class Login extends Application {
             } catch (IncorrectPasswordException e){
                 loginMessage.setText("Incorrect password.Please try again");
             };
+
+            loginMessage.setText("You have logged in succesfully!");
+
 
         } else {
             loginMessage.setText("Please type in a username!");

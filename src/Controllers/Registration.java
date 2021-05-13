@@ -53,8 +53,9 @@ public class Registration extends Application {
         //String description = descriptionField.getText();
 
         String password = Cryptography.getMD5(passwordField.getText());
-        Database.insertUser(new User(username,mail,phonenumber,password));
+        Database.insertUser(new User(username,password,phonenumber,mail));
         Database.writeUsersArray();
+
     }
 
 
