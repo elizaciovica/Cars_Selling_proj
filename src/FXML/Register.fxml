@@ -23,13 +23,13 @@
 
     <TextField fx:id="usernameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-    <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+    <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
 
-    <TextField fx:id="mailField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <TextField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-    <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+    <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
 
-    <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+    <PasswordField fx:id="mailField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
     <Label text="Number:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
 

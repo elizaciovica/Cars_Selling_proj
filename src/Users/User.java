@@ -1,5 +1,6 @@
 package Users;
 
+import java.io.IOException;
 import java.util.Objects;
 
 import Exceptions.IncorrectPasswordException;
@@ -80,14 +81,12 @@ public class User
         if (!password.equals(Database.getUserPassword(name))) {
             throw new IncorrectPasswordException("Password incorrect");
         }
-        if (Database.getUserMode(name).equals("client"))
+        /*if (Database.getUserMode(name).equals("client"))
             return new Customer(name, password, phone_number, email);
         else
-            return new Manager(name, password, phone_number, email);
+            return new Manager(name, password, phone_number, email);*/
+        return new User(name,password,phone_number,email);
     }
-
-
-
 
 
 

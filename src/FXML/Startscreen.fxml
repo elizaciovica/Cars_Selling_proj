@@ -11,20 +11,21 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 <GridPane alignment="center" hgap="10" prefHeight="454.0" prefWidth="634.0" vgap="10" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Start">
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
-    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="6">
-        <Button onAction="#handleReg" prefHeight="39.0" prefWidth="74.0" text="Register" />
-        <Button onAction="#handleLogin" prefHeight="39.0" prefWidth="74.0" text="Login" />
-    </HBox>
-    <ButtonBar GridPane.columnIndex="2" GridPane.rowIndex="2" />
-    <ImageView fx:id="imageView" fitHeight="300.0" fitWidth="300.0" layoutX="61.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
-            <Image backgroundLoading="true" url="https://upload.wikimedia.org/wikipedia/commons/3/3a/Two_Daewoo_Tico.jpg" />
-    </ImageView>
-</AnchorPane>
-   <columnConstraints>
-      <ColumnConstraints />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints />
-   </rowConstraints>
+    <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+        <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+        <ButtonBar GridPane.columnIndex="2" GridPane.rowIndex="2" />
+         <Button layoutY="116.0" onAction="#handleReg" prefHeight="39.0" prefWidth="74.0" text="Register" />
+         <Button layoutY="200.0" onAction="#handleLogin" prefHeight="39.0" prefWidth="74.0" text="Login" />
+      <ImageView fitHeight="320.0" fitWidth="417.0" layoutX="90.0" layoutY="37.0">
+         <image>
+            <Image url="file:../../../../Desktop/Selling+Car+Hands+Transferring+Money.jpg" />
+         </image>
+      </ImageView>
+    </AnchorPane>
+    <columnConstraints>
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+    </rowConstraints>
 </GridPane>

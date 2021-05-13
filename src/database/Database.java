@@ -11,6 +11,7 @@ import org.json.simple.parser.ParseException;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Database {
@@ -18,6 +19,8 @@ public class Database {
     private static JSONObject data;
     private static JSONArray users = new JSONArray();
     private static final String path = "Users.json";
+    private static int counter=0;
+    public static ArrayList<User> list= new ArrayList<>(10);
 
 
     public static void setUp() throws IOException, ParseException {
@@ -41,6 +44,8 @@ public class Database {
         userData.put("email", user.getEmail());
         userData.put("username", user.getUsername());
         users.add(userData);
+        counter++;
+        list.add(user);
 
         return true;
 
@@ -57,30 +62,51 @@ public class Database {
         }
     }
 
-    private static JSONObject getUserData(String user) {
-        JSONObject userEntry = (JSONObject) ((JSONObject) data.get("users")).get(user);
-        if (userEntry == null)
-            return null;
-        return userEntry;
+    private static User getUserData(String user) {
+        for(User u : list)
+        {
+            if(u.getUsername().equals(user))
+                return u;
+        }
+        return null;
     }
+
+
     public static Boolean userExists(String user) {
-        if(getUserData(user) == null)
+        /*if(getUserData(user) == null)
             return false;
-        return true;
+        return true;*/
+        for(User u : list)
+        {
+            if(u.getUsername().equals(user))
+                return true;
+        }
+        return false;
     }
 
     public static String getUserPassword(String user) {
-        JSONObject userData = getUserData(user);
-        if (userData == null)
-            return null;
-        return (String) userData.get("password");
+            return getUserData(user).getPassword();
+
     }
-    public static String getUserMode(String user) {
+
+    public static String getUserEmail(String user) {
+
+            return getUserData(user).getEmail();
+    }
+
+    public static String getUserPhone(String user) {
+
+        return getUserData(user).getPhone_number();
+    }
+
+
+    /*public static String getUserMode(String user) {
         JSONObject userData = getUserData(user);
         if (userData == null)
             return null;
         return (String) userData.get("mode");
-    }
+
+    }*/
 
 }
 
