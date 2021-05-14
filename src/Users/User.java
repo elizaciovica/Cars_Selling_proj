@@ -5,18 +5,22 @@ import java.util.Objects;
 
 import Exceptions.IncorrectPasswordException;
 import Exceptions.UserNotFoundException;
+import database.Cryptography;
 import database.Database;
+import org.json.simple.parser.ParseException;
 
 public class User
 {
-    private static String username, password, phone_number, email;
+    private static String username, password, phone_number, email,role;
 
-    public User(String username,String password,String phone_number,String email)
+    public User(String username,String password,String phone_number,String email,String role)
     {
         this.username=username;
         this.password=password;
         this.phone_number=phone_number;
         this.email=email;
+        this.role=role;
+
     }
 
     @java.lang.Override
@@ -26,6 +30,7 @@ public class User
                 ", password='" + password + '\'' +
                 ", phone_number='" + phone_number + '\'' +
                 ", email='" + email + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 
@@ -70,24 +75,39 @@ public class User
         return email;
     }
 
+    public String getRole() {
+        return role;
+    }
+
     public void setEmail(String email) {
         this.email = email;
     }
 
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     public static User getUser(String name, String password) throws UserNotFoundException, IncorrectPasswordException {
         if(!Database.userExists(name)) {
-            throw new UserNotFoundException("User" + name + "is not found");
+            throw  new UserNotFoundException("User " + name + " is not found");
         }
-        if (!password.equals(Database.getUserPassword(name))) {
-            throw new IncorrectPasswordException("Password incorrect");
+        if (!Cryptography.getMD5(password).equals(Database.getUserPassword(name))) {
+            throw new IncorrectPasswordException("Password incorrect"+Database.getUserPassword(name));
         }
         /*if (Database.getUserMode(name).equals("client"))
             return new Customer(name, password, phone_number, email);
         else
             return new Manager(name, password, phone_number, email);*/
-        return new User(name,password,phone_number,email);
+        return new User(name,password,phone_number,email,role);
     }
 
+    public static void main(String[] args) throws UserNotFoundException, IncorrectPasswordException, IOException, ParseException {
 
+        //Database.insertUser(new User("alex","parola","09","adsf"));
+        //Database.writeUsersArray();
+        Database.setUp();
+        //System.out.println(getUser("alex","parola"));
+        //System.out.println(getUser("1","2"));
+    }
 
 }
