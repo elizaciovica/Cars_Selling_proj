@@ -31,29 +31,32 @@ public class Login extends Application {
     @FXML
     public TextField passwordField;
     @FXML
-    private ChoiceBox role;
+
 
     private Button cancelButton;
     @FXML
     private Button loginButton;
-
     public void setCancelButton(ActionEvent event) {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
 
+
+
+
+
     public void handleButtonClick() {
 
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(Login.class.getResource("../FXML/Customer.fxml"));
-            /*
-             * if "fx:controller" is not set in fxml
-             * fxmlLoader.setController(NewWindowController);
-             */
+            FXMLLoader fxmlLoader= new FXMLLoader();
+            if(Database.getUserRole(usernameField.getText()).equals("Customer"))
+                fxmlLoader.setLocation(Login.class.getResource("../FXML/Customer.fxml"));
+            else
+                fxmlLoader=new FXMLLoader(getClass().getResource("../FXML/Manager.fxml"));
+
             Scene scene = new Scene(fxmlLoader.load(), 630, 400);
             Stage stage = new Stage();
-            stage.setTitle("Customer view");
+            stage.setTitle("View profile");
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
@@ -63,14 +66,10 @@ public class Login extends Application {
 
     }
 
-    /*public void initialize() {
-        role.getItems().addAll("Customer", "Manager");
-    }*/
 
     public void handleLoginAction() {
         String username = usernameField.getText();
         String password = Cryptography.getMD5(passwordField.getText());
-
         if ((username != null) && !username.isEmpty()) {
             if (password == null || password.isEmpty()) {
                 loginMessage.setText("Password field is empty!");
@@ -122,6 +121,8 @@ public class Login extends Application {
             loginMessage.setText("Please type in a username!");
             return;
         }
+
+        handleButtonClick();
 
     }
 
