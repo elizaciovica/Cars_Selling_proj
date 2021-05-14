@@ -3,8 +3,8 @@ public class Manager extends User
 {
     String business_name, description, location, contact;
 
-    public Manager(String username, String password, String phone_number, String email){
-        super(username, password, phone_number, email);
+    public Manager(String username, String password, String phone_number, String email,String role){
+        super(username, password, phone_number, email,role);
         this.contact=contact;
         this.description=description;
         this.location=location;

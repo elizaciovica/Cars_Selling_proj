@@ -19,7 +19,6 @@ public class Database {
     private static JSONObject data;
     private static JSONArray users = new JSONArray();
     private static final String path = "Users.json";
-    private static int counter=0;
     public static ArrayList<User> list= new ArrayList<>(10);
 
 
@@ -27,24 +26,37 @@ public class Database {
 
         JSONParser parser = new JSONParser();
 
-        try (Reader reader = new FileReader("users.json")) {
+        Reader reader = new FileReader("users.json") ;
 
             JSONArray array = (JSONArray) parser.parse(reader);
-            System.out.println(array);
+            for (int i = 0; i < array.size(); i++) {
+                    data= (JSONObject) array.get(i);
+                String username = data.getString("username");
+                String email = data.getString("email");
+                String phone = data.getString("phone");
+                String password = data.getString("password");
+                String role=data.getString("role");
+                System.out.println(data);
+                list.add(new User(username, password, phone, email,role));
+                data.put("password", username);
+                data.put("phone", phone);
+                data.put("email", email);
+                data.put("username", username);
+                users.add(data);
 
-
+            }
         }
-    }
 
 
-    public static boolean insertUser(User user) {
+
+    public static boolean insertUser(User user) throws IOException, ParseException {
         JSONObject userData = new JSONObject();
         userData.put("password", user.getPassword());
         userData.put("phone", user.getPhone_number());
         userData.put("email", user.getEmail());
         userData.put("username", user.getUsername());
+        userData.put("role",user.getRole());
         users.add(userData);
-        counter++;
         list.add(user);
 
         return true;
@@ -97,6 +109,11 @@ public class Database {
     public static String getUserPhone(String user) {
 
         return getUserData(user).getPhone_number();
+    }
+
+    public static String getUserRole(String user) {
+
+        return getUserData(user).getRole();
     }
 
 

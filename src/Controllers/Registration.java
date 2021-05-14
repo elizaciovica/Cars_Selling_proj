@@ -13,12 +13,12 @@ import javafx.scene.control.TextField;
 import Exceptions.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 
 public class Registration extends Application {
-    @FXML
-    private Text registrationMessage;
+
     @FXML
     public TextField usernameField;
     @FXML
@@ -36,27 +36,47 @@ public class Registration extends Application {
     @FXML
     public TextField descriptionField;
     @FXML
-    private ChoiceBox role;
+    private ChoiceBox Role;
+    @FXML
+    private Text Message;
+
 
     @FXML
     public void initialize() {
-        role.getItems().addAll("Customer", "Manager");
+        Role.getItems().addAll("Customer", "Manager");
     }
 
-    public void handleRegisterAction() throws IOException {
+    public void handleRegisterAction() throws IOException, ParseException {
         String username = usernameField.getText();
         String mail = mailField.getText();
         //String address = addressField.getText();
-        //String role = accountField.getText();
+        String role = (String) Role.getValue();
         String phonenumber = phoneField.getText();
         //String location = locationField.getText();
         //String description = descriptionField.getText();
 
         String password = Cryptography.getMD5(passwordField.getText());
-        Database.insertUser(new User(username,password,phonenumber,mail));
+        /*if (username == null || username.isEmpty()) {
+            Message.setText("Username field is empty!");
+            return;}
+        if (password == null || password.isEmpty()) {
+            Message.setText("Password field is empty!");
+            return;}
+        if (mail == null || mail.isEmpty()) {
+            Message.setText("Email field is empty!");
+            return;}
+        if (phonenumber == null || phonenumber.isEmpty()) {
+            Message.setText("Phone number field is empty!");
+            return;}
+        if (role == null || role.isEmpty()) {
+            Message.setText("Role field is empty!");
+            return;
+        }*/
+        Database.insertUser(new User(username,password,phonenumber,mail,role));
         Database.writeUsersArray();
-
+        //Message.setText("You have succesfully created an account!");
     }
+
 
 
 

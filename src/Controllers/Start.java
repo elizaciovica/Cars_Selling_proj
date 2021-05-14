@@ -29,14 +29,10 @@ public class Start extends Application {
         Scene scene = new Scene(root);
 
 
-        //File file = new File("/Two_Daewoo_Tico.jpg");
-        //Image image = new Image(file.toURI().toString());
-        //imageView = new ImageView(image);
-        // set up the stage
         Stage stage = new Stage();
         stage.setTitle("Cars selling");
-        stage.setWidth(800);
-        stage.setHeight(800);
+        stage.setWidth(634);
+        stage.setHeight(454);
         stage.setScene(scene);
         stage.show();
 
