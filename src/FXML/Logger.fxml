@@ -37,7 +37,6 @@
         <Button onAction="#handleLoginAction" prefHeight="39.0" prefWidth="74.0" text="Login" />
     </HBox>
     <ButtonBar GridPane.columnIndex="2" GridPane.rowIndex="2" />
-   <Button onAction="#handleButtonClick" mnemonicParsing="false" text="Open customer view" GridPane.columnIndex="1" GridPane.rowIndex="8" />
     <columnConstraints>
         <ColumnConstraints />
         <ColumnConstraints />
