@@ -29,14 +29,10 @@ public class Start extends Application {
         Scene scene = new Scene(root);
 
 
-        //File file = new File("/Two_Daewoo_Tico.jpg");
-        //Image image = new Image(file.toURI().toString());
-        //imageView = new ImageView(image);
-        // set up the stage
         Stage stage = new Stage();
         stage.setTitle("Cars selling");
-        stage.setWidth(600);
-        stage.setHeight(600);
+        stage.setWidth(634);
+        stage.setHeight(454);
         stage.setScene(scene);
         stage.show();
 
@@ -49,7 +45,7 @@ public class Start extends Application {
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.DECORATED);
+            stage.initStyle(StageStyle.UTILITY);
             stage.setTitle("Register");
             stage.setScene(new Scene(root1));
             stage.show();
@@ -64,7 +60,7 @@ public class Start extends Application {
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.DECORATED);
+            stage.initStyle(StageStyle.UTILITY);
             stage.setTitle("Login");
             stage.setScene(new Scene(root1));
             stage.show();
