@@ -3,6 +3,7 @@ package Users;
 import java.io.IOException;
 import java.util.Objects;
 
+import Exceptions.CarAlreadyExists;
 import Exceptions.IncorrectPasswordException;
 import Exceptions.UserNotFoundException;
 import database.Cryptography;
@@ -101,7 +102,7 @@ public class User
         return new User(name,password,phone_number,email,role);
     }
 
-    public static void main(String[] args) throws UserNotFoundException, IncorrectPasswordException, IOException, ParseException {
+    public static void main(String[] args) throws UserNotFoundException, IncorrectPasswordException, IOException, ParseException, CarAlreadyExists {
 
         //Database.insertUser(new User("alex","parola","09","adsf"));
         //Database.writeUsersArray();
