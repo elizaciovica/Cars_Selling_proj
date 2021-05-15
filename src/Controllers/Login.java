@@ -22,8 +22,10 @@ import java.util.logging.Logger;
 
 import Exceptions.*;
 
-public class Login extends Application {
 
+
+public class Login extends Application {
+    public static String currentuser,currentpass;
     @FXML
     private Text loginMessage;
     @FXML
@@ -112,7 +114,7 @@ public class Login extends Application {
                 loginMessage.setText("User not found.Please try again");
             } catch (IncorrectPasswordException e){
                 loginMessage.setText("Incorrect password.Please try again");
-            };
+            }
 
             loginMessage.setText("You have logged in succesfully!");
 
@@ -121,30 +123,13 @@ public class Login extends Application {
             loginMessage.setText("Please type in a username!");
             return;
         }
-
+        currentuser=username;
+        currentpass= passwordField.getText();
         handleButtonClick();
 
     }
 
-        /**
-       Parent root = null;/**
-        try {
-            root = FXMLLoader.load(getClass().getResource("Logger.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }**//**
-        Stage stage = (Stage) loginButton.getScene().getWindow();
-        FXMLLoader loader  = new FXMLLoader((getClass().getResource("../FXML/Logger.fxml")));
-        try {
-            root = loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Scene scene = new Scene(root, 600, 400);
-        stage.setScene(scene);
 
-
-    }**/
     public static void main(String[] args) {
         launch(args);
     }
