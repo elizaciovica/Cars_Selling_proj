@@ -117,13 +117,5 @@ public class Database {
     }
 
 
-    /*public static String getUserMode(String user) {
-        JSONObject userData = getUserData(user);
-        if (userData == null)
-            return null;
-        return (String) userData.get("mode");
-
-    }*/
-
 }
 

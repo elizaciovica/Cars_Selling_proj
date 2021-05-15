@@ -95,11 +95,11 @@ public class User
         if (!Cryptography.getMD5(password).equals(Database.getUserPassword(name))) {
             throw new IncorrectPasswordException("Password incorrect"+Database.getUserPassword(name));
         }
-        /*if (Database.getUserMode(name).equals("client"))
-            return new Customer(name, password, phone_number, email);
+        if (Database.getUserRole(name).equals("Customer"))
+            return new Customer(name, password, phone_number, email,role);
         else
-            return new Manager(name, password, phone_number, email);*/
-        return new User(name,password,phone_number,email,role);
+            return new Manager(name, password, phone_number, email,role);
+        //return new User(name,password,phone_number,email,role);
     }
 
     public static void main(String[] args) throws UserNotFoundException, IncorrectPasswordException, IOException, ParseException, CarAlreadyExists {

@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import Exceptions.*;
@@ -38,7 +39,7 @@ public class Registration extends Application {
     @FXML
     private ChoiceBox Role;
     @FXML
-    private Text Message;
+    private Label Message;
 
 
     @FXML
@@ -56,7 +57,7 @@ public class Registration extends Application {
         //String description = descriptionField.getText();
 
         String password = Cryptography.getMD5(passwordField.getText());
-        /*if (username == null || username.isEmpty()) {
+        if (username == null || username.isEmpty()) {
             Message.setText("Username field is empty!");
             return;}
         if (password == null || password.isEmpty()) {
@@ -71,10 +72,10 @@ public class Registration extends Application {
         if (role == null || role.isEmpty()) {
             Message.setText("Role field is empty!");
             return;
-        }*/
+        }
         Database.insertUser(new User(username,password,phonenumber,mail,role));
         Database.writeUsersArray();
-        //Message.setText("You have succesfully created an account!");
+        Message.setText("You have succesfully created an account!");
     }
 
 

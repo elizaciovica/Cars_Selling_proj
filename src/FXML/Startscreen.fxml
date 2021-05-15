@@ -18,7 +18,7 @@
          <Button layoutY="200.0" onAction="#handleLogin" prefHeight="39.0" prefWidth="74.0" text="Login" />
       <ImageView fitHeight="320.0" fitWidth="417.0" layoutX="90.0" layoutY="37.0">
          <image>
-            <Image url="file:../../../../Desktop/Selling+Car+Hands+Transferring+Money.jpg" />
+            <Image url="https://castlebuycenter.com/wp-content/uploads/2019/11/Car_for_sale-1024x706-1.jpg" />
          </image>
       </ImageView>
     </AnchorPane>

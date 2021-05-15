@@ -22,7 +22,7 @@
         <plugin>
             <groupId>cars_selling.example</groupId>
             <artifactId>Cars_Selling_proj</artifactId>
-            <version>2.4.1</version>
+            <version>3.6.3</version>
             <configuration>
                 <finalName>cars_selling.example</finalName>
                 <!-- get all project dependencies -->

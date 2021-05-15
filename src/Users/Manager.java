@@ -10,10 +10,7 @@ public class Manager extends User
     public ArrayList<Car> cars=new ArrayList<>();
     public Manager(String username, String password, String phone_number, String email,String role){
         super(username, password, phone_number, email,role);
-        this.contact=contact;
-        this.description=description;
-        this.location=location;
-        this.business_name = business_name;
+
     }
 
     @Override
@@ -37,12 +34,22 @@ public class Manager extends User
         return true;
     }
 
+    public ArrayList<Car> getCars() {
+        return cars;
+    }
+
+    public void setCars(ArrayList<Car> cars) {
+        this.cars = cars;
+    }
+
+
 
     public static void main(String[] args) throws CarAlreadyExists {
         Car c1=new Car("Audi",2021,10000);
         Car c2=new Car("Audi",2020,10000);
         Manager m=new Manager("Ion","parola","07","email","Manager");
         System.out.println(m.addCar(c1));
-        System.out.println(m.addCar(c1));
+        //System.out.println(m.addCar(c1));
+        System.out.println(m.cars);
     }
 }
