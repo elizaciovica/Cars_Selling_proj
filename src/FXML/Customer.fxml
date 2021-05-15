@@ -21,7 +21,7 @@
       <ButtonBar GridPane.columnIndex="2" GridPane.rowIndex="2" />
       <Button layoutX="33.0" layoutY="69.0" onAction="#handleList" prefHeight="39.0" prefWidth="178.0" text="See list of all the companies!" />
       <Button layoutX="192.0" layoutY="122.0" onAction="#handleSearch" prefHeight="39.0" prefWidth="168.0" text="Search company by name!" />
-      <Button layoutX="360.0" layoutY="183.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="168.0" text="Search car by name" />
+      <Button layoutX="360.0" layoutY="183.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="168.0" text="Search car by name!" />
 
    </AnchorPane>
    <columnConstraints>
