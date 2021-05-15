@@ -44,6 +44,7 @@
     <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="6">
         <Button onAction="#handleRegisterAction" prefHeight="39.0" prefWidth="74.0" text="Register" />
     </HBox>
+
    <ButtonBar GridPane.columnIndex="2" GridPane.rowIndex="2" />
    <Label prefHeight="18.0" prefWidth="234.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
    <columnConstraints>
