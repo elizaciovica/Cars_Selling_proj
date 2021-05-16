@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <build>
-
+<pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -31,8 +31,14 @@
                 </descriptorRefs>
                 <!-- MainClass in mainfest make a executable jar -->
                 <archive>
+                    <!--<manifest>
+                        <mainClass>src.Controllers.Start.main</mainClass>
+                    </manifest>-->
+                    <manifestFile>src/main/resources/MANIFEST.MF</manifestFile>
                     <manifest>
-                        <mainClass>org.loose.fis.registration.example.Main</mainClass>
+                        <addClasspath>true</addClasspath>
+                        <classpathPrefix>lib/</classpathPrefix>
+                        <mainClass>src.Controllers.Start</mainClass>
                     </manifest>
                 </archive>
                 <appendAssemblyId>false</appendAssemblyId>
@@ -49,10 +55,18 @@
             </executions>
         </plugin>
     </plugins>
+</pluginManagement>
 </build>
 
 <dependencies>
-<dependency>
+    <dependency>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+    </dependency>
+
+
+    <dependency>
     <groupId>com.fasterxml.jackson.core</groupId>
     <artifactId>jackson-databind</artifactId>
     <version>2.11.0.rc1</version>
@@ -62,7 +76,6 @@
     <artifactId>commons-io</artifactId>
     <version>1.3.2</version>
 </dependency>
-
     <!-- https://mvnrepository.com/artifact/org.json/json -->
     <dependency>
         <groupId>org.json</groupId>
@@ -75,9 +88,7 @@
         <artifactId>json-simple</artifactId>
         <version>1.1.1</version>
     </dependency>
-
 </dependencies>
-
 
 
         </project>
