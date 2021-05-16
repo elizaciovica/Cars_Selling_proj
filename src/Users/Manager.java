@@ -34,6 +34,12 @@ public class Manager extends User
         return true;
     }
 
+    public void deleteCar(String name, int year)
+    {
+        cars.removeIf(c -> c.getName().equals(name) && c.getYear() == year);
+
+    }
+
     public ArrayList<Car> getCars() {
         return cars;
     }
@@ -49,7 +55,9 @@ public class Manager extends User
         Car c2=new Car("Audi",2020,10000);
         Manager m=new Manager("Ion","parola","07","email","Manager");
         System.out.println(m.addCar(c1));
-        //System.out.println(m.addCar(c1));
+        System.out.println(m.addCar(c2));
+        System.out.println(m.cars);
+        m.deleteCar("Audi",2020);
         System.out.println(m.cars);
     }
 }

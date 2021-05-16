@@ -41,6 +41,35 @@ public class ManagerController {
     @FXML
     private Label Message=new Label();
 
+    @FXML
+    private TextField nameToDelete;
+    @FXML
+    private TextField yearToDelete;
+
+
+    public void delete() {
+        String name=nameToDelete.getText();
+        String year=yearToDelete.getText();
+        String usr=Login.currentuser;//get Username from Login screen
+        String pass=Login.currentpass;//get pass from login screen
+        curr=new Manager(usr,pass,null,null,"Manager");
+        if (name == null || name.isEmpty()) {
+            Message.setText("Name field is empty!");
+            return;}
+        if (year == null || year.isEmpty()) {
+            Message.setText("Year field is empty!");
+            return;}
+
+        try{
+            curr.deleteCar(name, Integer.parseInt(year));
+
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        //list_cars.getItems().add(new Car(name, Integer.parseInt(year),Integer.parseInt(price)));
+        Message.setText("Car successfully deleted");
+    }
+
     public void add() throws CarAlreadyExists {
         String name=nameField.getText();
         String year=yearField.getText();
@@ -90,6 +119,18 @@ public class ManagerController {
     }
 
     public void handleDelete(){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../FXML/DeleteCar.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UTILITY);
+            stage.setTitle("Delete car");
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         messageDelete.setText("Deleted car!");
     }
 
