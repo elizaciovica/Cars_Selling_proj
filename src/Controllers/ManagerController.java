@@ -52,7 +52,6 @@ public class ManagerController {
         String year=yearToDelete.getText();
         String usr=Login.currentuser;//get Username from Login screen
         String pass=Login.currentpass;//get pass from login screen
-        curr=new Manager(usr,pass,null,null,"Manager");
         if (name == null || name.isEmpty()) {
             Message.setText("Name field is empty!");
             return;}
@@ -61,12 +60,17 @@ public class ManagerController {
             return;}
 
         try{
-            curr.deleteCar(name, Integer.parseInt(year));
+            ((Manager) (User.getUser(usr))).deleteCar(name, Integer.parseInt(year));
 
         } catch (NumberFormatException e) {
             e.printStackTrace();
-        }
+        } catch (UserNotFoundException e) {
+            e.printStackTrace();
+        } catch (IncorrectPasswordException e) {
+            e.printStackTrace();
+        }           
         //list_cars.getItems().add(new Car(name, Integer.parseInt(year),Integer.parseInt(price)));
+
         Message.setText("Car successfully deleted");
     }
 
@@ -76,7 +80,7 @@ public class ManagerController {
         String price= priceField.getText();
         String usr=Login.currentuser;//get Username from Login screen
         String pass=Login.currentpass;//get pass from login screen
-        curr=new Manager(usr,pass,null,null,"Manager");
+        //curr=new Manager(usr,pass,null,null,"Manager");
         if (name == null || name.isEmpty()) {
             Message.setText("Name field is empty!");
             return;}
@@ -86,12 +90,19 @@ public class ManagerController {
         if (price == null || price.isEmpty()) {
             Message.setText("Price field is empty!");
             return;}
-        try{
-            curr.addCar(new Car(name, Integer.parseInt(year),Integer.parseInt(price)));
-            arr.add(new Car(name, Integer.parseInt(year),Integer.parseInt(price)));}
+        try {
+            //curr.addCar(new Car(name, Integer.parseInt(year),Integer.parseInt(price)));
+            //arr.add(new Car(name, Integer.parseInt(year),Integer.parseInt(price)));}
+            ((Manager) (User.getUser(usr))).addCar(new Car(name, Integer.parseInt(year),Integer.parseInt(price)));
+
+        }
         catch (CarAlreadyExists carAlreadyExists) {
             carAlreadyExists.printStackTrace();
         } catch (NumberFormatException e) {
+            e.printStackTrace();
+        } catch (UserNotFoundException e) {
+            e.printStackTrace();
+        } catch (IncorrectPasswordException e) {
             e.printStackTrace();
         }
         //list_cars.getItems().add(new Car(name, Integer.parseInt(year),Integer.parseInt(price)));
@@ -137,10 +148,7 @@ public class ManagerController {
     public void handleView() throws UserNotFoundException, IncorrectPasswordException {
         String usr=Login.currentuser;//get Username from Login screen
         String pass=Database.getUserPassword(usr);
-        //ArrayList<Car> arr = ((Manager) (User.getUser(usr, pass))).getCars();
-        curr=new Manager(usr,pass,null,null,"Manager");
-        curr.setCars(arr);
-        list_cars.getItems().addAll(curr.cars);
+        list_cars.getItems().addAll(((Manager) (User.getUser(usr))).getCars());
         HBox hbox = new HBox(list_cars);
         Scene scene = new Scene(hbox, 300, 120);
 

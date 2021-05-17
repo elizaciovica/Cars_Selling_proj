@@ -102,12 +102,24 @@ public class User
         //return new User(name,password,phone_number,email,role);
     }
 
+    public static User getUser(String name) throws UserNotFoundException, IncorrectPasswordException {
+        if(!Database.userExists(name)) {
+            throw  new UserNotFoundException("User " + name + " is not found");
+        }
+        
+        if (Database.getUserRole(name).equals("Customer"))
+            return new Customer(name, password, phone_number, email,role);
+        else
+            return new Manager(name, password, phone_number, email,role);
+        //return new User(name,password,phone_number,email,role);
+    }
+
     public static void main(String[] args) throws UserNotFoundException, IncorrectPasswordException, IOException, ParseException, CarAlreadyExists {
 
-        //Database.insertUser(new User("alex","parola","09","adsf"));
+        Database.insertUser(new User("alex","parola","09","adsf","Manager"));
         //Database.writeUsersArray();
-        Database.setUp();
-        //System.out.println(getUser("alex","parola"));
+        //Database.setUp();
+        System.out.println(getUser("alex"));
         //System.out.println(getUser("1","2"));
     }
 
