@@ -34,11 +34,9 @@
                     <!--<manifest>
                         <mainClass>src.Controllers.Start.main</mainClass>
                     </manifest>-->
-                    <manifestFile>src/main/resources/MANIFEST.MF</manifestFile>
+                    <!--<manifestFile>src/main/resources/MANIFEST.MF</manifestFile>-->
                     <manifest>
-                        <addClasspath>true</addClasspath>
-                        <classpathPrefix>lib/</classpathPrefix>
-                        <mainClass>src.Controllers.Start</mainClass>
+                        <main>src.Controllers.Main</main>
                     </manifest>
                 </archive>
                 <appendAssemblyId>false</appendAssemblyId>
@@ -88,6 +86,20 @@
         <artifactId>json-simple</artifactId>
         <version>1.1.1</version>
     </dependency>
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-api</artifactId>
+        <version>5.8.0-M1</version>
+        <scope>compile</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-engine</artifactId>
+        <version>5.8.0-M1</version>
+        <scope>test</scope>
+    </dependency>
+
 </dependencies>
 
 
